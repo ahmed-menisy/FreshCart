@@ -1,0 +1,59 @@
+<div>
+  <div class="product">
+    <div class="ptorcut-area position-relative">
+      <span
+        *ngIf="!whish.includes(product._id)"
+        (click)="addToWhish(product._id)"
+        role="button"
+        class="heart"
+      >
+        <i class="fas fa-heart"></i>
+      </span>
+
+      <span
+        *ngIf="whish.includes(product._id)"
+        (click)="removeFromWhish(product._id)"
+        role="button"
+        class="heart"
+      >
+        <i class="fa-solid fa-heart-crack"></i>
+      </span>
+
+      <header role="button" [routerLink]="['/products', product._id]">
+        <img
+          loading="lazy"
+          class="w-100"
+          [src]="product.imageCover"
+          [alt]="product.title"
+        />
+
+        <h4 class="h6 font-sm text-main">{{ product.category.name }}</h4>
+        <h3 class="h6 small">{{ product.title | cuttext : cutTextNum }}</h3>
+      </header>
+
+      <footer class="hstack justify-content-between">
+        <span class="small"> {{ product.price | currency : "EGP" }} </span>
+
+        <div class="d-flex font-sm align-items-center">
+          <ul class="d-flex mb-0 list-unstyled">
+            <li *ngFor="let num of [1, 2, 3, 4, 5]">
+              <i
+                *ngIf="num <= product.ratingsAverage"
+                class="fas fa-star rating-color"
+              ></i>
+            </li>
+
+            <li *ngIf="product.ratingsAverage % 1 != 0">
+              <i class="fas fa-star-half rating-color"></i>
+            </li>
+          </ul>
+
+          <span> {{ product.ratingsAverage }} </span>
+        </div>
+      </footer>
+    </div>
+    <button (click)="addToCart(product._id)" class="add-btn main-btn w-100">
+      + Add To Cart
+    </button>
+  </div>
+</div>

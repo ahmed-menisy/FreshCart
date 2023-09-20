@@ -1,0 +1,44 @@
+<section>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div
+      role="button"
+      [routerLink]="['/brands', item._id]"
+      class="col"
+      *ngFor="
+        let item of brandsData
+          | paginate
+            : {
+                id: 'brand',
+                itemsPerPage: pageSize,
+                currentPage: curentPage,
+                totalItems: totalItem
+              }
+      "
+    >
+      <div class="card">
+        <img class="card-img-top" [src]="item.image" [alt]="item.name" />
+        <div class="card-body">
+          <h4 class="card-title text-main">{{ item.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="d-flex justify-content-center mt-3">
+  <pagination-controls
+    id="brand"
+    (pageChange)="pageChanged($event)"
+    (pageBoundsCorrection)="pageChanged($event)"
+    [maxSize]="9"
+    [directionLinks]="true"
+    [autoHide]="true"
+    [responsive]="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page"
+  >
+  </pagination-controls>
+</footer>

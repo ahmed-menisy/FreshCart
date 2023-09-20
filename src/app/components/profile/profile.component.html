@@ -1,0 +1,73 @@
+<section>
+  <div class="table-responsive table-data">
+    <table class="table" *ngIf="profileData.length">
+      <thead>
+        <tr class="table-primary">
+          <th>Name:</th>
+          <th>Details:</th>
+          <th>Phone:</th>
+          <th>City:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of profileData" class="small position-relative">
+          <td>{{ item.name }}</td>
+          <td>{{ item.details }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.city }}</td>
+          <span
+            (click)="removeAddress(item._id)"
+            role="button"
+            class="position-absolute end-0 top-50 translate-middle-y me-4 delete"
+          >
+            <i class="fas fa-trash text-danger fa-xl"></i>
+          </span>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <form
+    class="border rounded p-3 shadow mt-5"
+    [formGroup]="addressForm"
+    (ngSubmit)="addAddress()"
+  >
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <input
+          placeholder="Details"
+          formControlName="details"
+          class="form-control"
+        />
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <input
+          type="tel"
+          placeholder="Phone"
+          formControlName="phone"
+          class="form-control"
+        />
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <input
+          type="text"
+          placeholder="City"
+          formControlName="city"
+          class="form-control"
+        />
+      </div>
+
+      <button type="submit" class="main-btn mx-auto">ADD ADDRESS</button>
+    </div>
+  </form>
+</section>

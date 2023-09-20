@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  padding-block: 70px 30px;
+  margin-block: auto;
+}
+
+.go-up {
+  all: unset;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-content: center;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 999;
+  font-size: 23px;
+  transition: opacity 1s;
+
+  &.hide {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #f0f3f2;
+    border: 1px solid #00000055;
+    border-radius: 10px;
+    transform: rotate(45deg);
+  }
+}

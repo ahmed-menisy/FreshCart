@@ -1,0 +1,20 @@
+.btn-remove {
+  cursor: pointer;
+  background-color: transparent;
+  border: unset;
+}
+
+.cart-area {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.btn-count {
+  all: unset;
+  border-radius: 5px;
+  border: 1px solid #0aad0a;
+  color: #000;
+  display: block;
+  padding: 3px 10px;
+  cursor: pointer;
+}

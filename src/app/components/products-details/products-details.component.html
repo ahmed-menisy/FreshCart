@@ -1,0 +1,59 @@
+<section *ngIf="productDetails">
+  <div class="row g-4 align-items-center">
+    <div class="col-md-3">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let img of productDetails.images">
+          <ng-template carouselSlide>
+            <img
+              loading="lazy"
+              [src]="img"
+              [alt]="productDetails.title"
+              [title]="productDetails.title"
+            />
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-9">
+      <div>
+        <header>
+          <h2>{{ productDetails.title }}</h2>
+          <h3 class="h6 text-muted">{{ productDetails.description }}</h3>
+          <h4 class="h6 font-sm text-main">
+            {{ productDetails.category.name }}
+          </h4>
+        </header>
+
+        <footer class="hstack justify-content-between my-3">
+          <span class="small">
+            {{ productDetails.price | currency : "EGP" }}
+          </span>
+
+          <div class="d-flex font-sm align-items-center">
+            <ul class="d-flex mb-0 list-unstyled">
+              <li *ngFor="let num of [1, 2, 3, 4, 5]">
+                <i
+                  *ngIf="num <= productDetails.ratingsAverage"
+                  class="fas fa-star rating-color"
+                ></i>
+              </li>
+
+              <li *ngIf="productDetails.ratingsAverage % 1 != 0">
+                <i class="fas fa-star-half rating-color"></i>
+              </li>
+            </ul>
+
+            <span> {{ productDetails.ratingsAverage }} </span>
+          </div>
+        </footer>
+
+        <button
+          (click)="addToCart(productDetails._id)"
+          class="add-btn main-btn w-100"
+        >
+          + Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

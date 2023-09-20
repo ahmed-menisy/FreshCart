@@ -1,0 +1,31 @@
+.table-data {
+  max-height: 60vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-track {
+    width: initial !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: initial !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    all: unset;
+    background-color: rgb(7, 176, 32);
+  }
+}
+
+tbody {
+  tr {
+    .delete {
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    &:hover {
+      .delete {
+        opacity: 1;
+      }
+    }
+  }
+}

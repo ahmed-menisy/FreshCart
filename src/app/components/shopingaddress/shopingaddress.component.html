@@ -1,0 +1,114 @@
+<section class="w-50 mx-auto shadow rounded bg-main-light p-3">
+  <h1 class="text-center">shipping Address</h1>
+  <form [formGroup]="shopForm" (ngSubmit)="handleForm()" class="vstack gap-3">
+    <div class="form-item">
+      <label for="details">Details:</label>
+      <textarea
+        id="details"
+        formControlName="details"
+        class="form-control"
+        placeholder="Your Details..."
+      ></textarea>
+
+      <ng-container
+        *ngIf="
+          f['details'].errors &&
+          (f['details'].value.length || f['details'].touched)
+        "
+      >
+        <p
+          class="alert alert-danger w-50 mx-auto p-1 mb-0"
+          *ngIf="f['details'].getError('required')"
+        >
+          Details Is Required
+        </p>
+        <p
+          class="alert alert-danger w-50 mx-auto p-1 mb-0"
+          *ngIf="f['details'].getError('minlength')"
+        >
+          Details MinLength is 2
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-item">
+      <label for="phone">Phone:</label>
+      <input
+        id="phone"
+        type="tel"
+        formControlName="phone"
+        class="form-control"
+        placeholder="Your Phone..."
+      />
+
+      <ng-container
+        *ngIf="
+          f['phone'].errors && (f['phone'].value.length || f['phone'].touched)
+        "
+      >
+        <p
+          class="alert alert-danger w-50 mx-auto p-1 mb-0"
+          *ngIf="f['phone'].getError('required')"
+        >
+          phone Is Required
+        </p>
+        <p
+          class="alert alert-danger w-50 mx-auto p-1 mb-0"
+          *ngIf="f['phone'].getError('pattern')"
+        >
+          accept only egypt phone numbers
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-item">
+      <label for="city">City:</label>
+      <input
+        id="city"
+        type="text"
+        formControlName="city"
+        class="form-control"
+        placeholder="Your City..."
+      />
+
+      <ng-container
+        *ngIf="
+          f['city'].errors && (f['city'].value.length || f['city'].touched)
+        "
+      >
+        <p
+          class="alert alert-danger w-50 mx-auto p-1 mb-0"
+          *ngIf="f['city'].getError('required')"
+        >
+          city Is Required
+        </p>
+        <p
+          class="alert alert-danger w-50 mx-auto p-1 mb-0"
+          *ngIf="f['city'].getError('minlength')"
+        >
+          City MinLength is 2
+        </p>
+      </ng-container>
+    </div>
+
+    <button
+      *ngIf="!isLoading"
+      type="submit"
+      [disabled]="shopForm.invalid"
+      class="main-btn"
+    >
+      <span>Next</span>
+    </button>
+
+    <button *ngIf="isLoading" type="button" disabled class="main-btn ms-auto">
+      <span> <i class="fas fa-spinner fa-spin"></i> </span>
+    </button>
+
+    <p
+      class="alert alert-danger text-center w-50 mx-auto mb-0 p-1 mt-3"
+      *ngIf="errMsg"
+    >
+      {{ errMsg }}
+    </p>
+  </form>
+</section>

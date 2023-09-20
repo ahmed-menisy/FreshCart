@@ -1,0 +1,71 @@
+<section
+  class="bg-main-light p-4 w-75 mx-auto rounded shadow cart-area"
+  *ngIf="cartDetails.length; else cartMsg"
+>
+  <h1 class="text-center h3">Shop Cart</h1>
+  <button
+    (click)="clearCart()"
+    class="btn btn-outline-danger btn-sm d-block ms-auto"
+  >
+    <i class="fas fa-trash"></i> Clear Cart
+  </button>
+  <span class="text-main mb-3"> Total Price :{{ totalCartPrice }} </span>
+
+  <div class="row g-4 align-items-center" *ngFor="let cartItem of cartDetails">
+    <div class="col-md-9">
+      <div class="item d-flex gap-3 align-items-center">
+        <img
+          width="70"
+          [src]="cartItem.product.imageCover"
+          [alt]="cartItem.product.title"
+        />
+        <div class="item-details">
+          <h3 class="h6 small">{{ cartItem.product.title | cuttext : 10 }}</h3>
+          <span class="text-main">Price: {{ cartItem.price }} </span>
+
+          <button
+            class="btn-remove d-block text-main"
+            (click)="deleteProduct(cartItem.product._id)"
+          >
+            <i class="fas fa-trash"></i>
+            <span>Remove</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="hstack gap-3 justify-content-end">
+        <button
+          (click)="changeCount(1, cartItem.count, cartItem.product._id)"
+          class="btn-count"
+        >
+          +
+        </button>
+        <span> {{ cartItem.count }} </span>
+        <button
+          (click)="changeCount(-1, cartItem.count, cartItem.product._id)"
+          class="btn-count"
+        >
+          -
+        </button>
+      </div>
+    </div>
+
+    <hr class="my-3" />
+  </div>
+  <button
+    routerLink="/shopaddress"
+    [queryParams]="{ userid: userId }"
+    class="main-btn py-0"
+  >
+    Online Payment <img src="./assets/images/visa-1.svg" alt="visa card" />
+  </button>
+</section>
+
+<ng-template #cartMsg>
+  <h2 class="text-center">Your Cart Is Empty...</h2>
+</ng-template>
+
+<section class="border rounded shadow-sm p-3 mt-5 mx-auto w-50">
+  <button class="main-btn w-100" routerLink="/allorders">My Orders</button>
+</section>

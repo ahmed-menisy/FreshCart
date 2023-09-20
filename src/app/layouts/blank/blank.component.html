@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<main class="container-fluid">
+  <router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>
+<ngx-spinner
+  bdColor="rgba(240, 240, 240, .85)"
+  template="<img width='250' src='./assets/images/freshcart-logo.svg' />"
+>
+</ngx-spinner>
+
+<button (click)="goToUp()" #goUp class="go-up hide">
+  <i class="fa-solid fa-angle-up" style="color: #18812d"></i>
+</button>

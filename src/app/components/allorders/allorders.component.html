@@ -1,5 +1,5 @@
 <section
-  *ngIf="ordersData.length"
+  *ngIf="ordersData.length; else oreder"
   class="rounded shadow bg-main-light w-75 mx-auto p-3 allorders"
 >
   <h1 class="text-center h4">All Orders</h1>
@@ -63,3 +63,7 @@
     </div>
   </div>
 </section>
+
+<ng-template #oreder>
+  <h1 class="text-center my-3 display-3">Your All Orders Is Empty...</h1>
+</ng-template>

@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="whishList.length; else whish">
   <div
     class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-6 justify-content-center"
   >
@@ -48,3 +48,7 @@
     </div>
   </div>
 </section>
+
+<ng-template #whish>
+  <h1 class="text-center my-3 display-3">Your WhishList Is Empty...</h1>
+</ng-template>

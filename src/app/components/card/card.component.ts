@@ -45,6 +45,7 @@ export class CardComponent {
           });
 
           this.whish = response.data;
+          this._EcomdataService.whishNumber.next(this.whish.length);
         }
       },
     });
@@ -58,7 +59,8 @@ export class CardComponent {
             positionClass: 'toast-bottom-right',
           });
           this.whish = response.data;
-          console.log(this.whish);
+          // console.log(this.whish);
+          this._EcomdataService.whishNumber.next(this.whish.length);
         }
       },
     });

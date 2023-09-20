@@ -97,6 +97,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'updatepass',
+        loadComponent: () =>
+          import('./components/updatepass/updatepass.component').then(
+            (m) => m.UpdatepassComponent
+          ),
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import('./components/profile/profile.component').then(
@@ -116,6 +123,13 @@ const routes: Routes = [
         loadComponent: () =>
           import('./components/login/login.component').then(
             (m) => m.LoginComponent
+          ),
+      },
+      {
+        path: 'forgotlogin',
+        loadComponent: () =>
+          import('./components/forgotpassword/forgotpassword.component').then(
+            (m) => m.ForgotpasswordComponent
           ),
       },
       {

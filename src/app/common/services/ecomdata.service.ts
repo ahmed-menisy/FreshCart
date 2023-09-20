@@ -14,6 +14,8 @@ export class EcomdataService {
   ) {}
 
   cartNumber: BehaviorSubject<number> = new BehaviorSubject(0);
+  whishNumber: BehaviorSubject<number> = new BehaviorSubject(0);
+  whishList: BehaviorSubject<any> = new BehaviorSubject([]);
 
   getUserOrders(userId: string): Observable<any> {
     return this._HttpClient.get(

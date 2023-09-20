@@ -29,13 +29,19 @@ export class NavbarComponent implements OnInit {
   @ViewChild('navbar') navbar!: ElementRef;
 
   cartItemNumber: number = 0;
+  whishItemNumber: number = 0;
   userName: string = '';
 
   ngOnInit(): void {
     this._AuthService.userData.subscribe({
       next: (data) => {
         if (data !== null) {
-          this.userName = data.name.slice(0, 1).toUpperCase();
+          console.log('data', data);
+          this.userName = data.name
+            ? data?.name?.slice(0, 1).toUpperCase()
+            : 'U';
+        } else {
+          this.userName = 'U';
         }
       },
     });
@@ -56,6 +62,25 @@ export class NavbarComponent implements OnInit {
     this._EcomdataService.cartNumber.subscribe({
       next: (data) => {
         this.cartItemNumber = data;
+      },
+    });
+
+    if (!this._Router.url.includes('whishlist')) {
+      this._EcomdataService.getWishlist().subscribe({
+        next: (response) => {
+          if (response.status === 'success') {
+            const whishList = response.data.map((item: any) => item._id);
+            this._EcomdataService.whishList.next(whishList);
+            this._EcomdataService.whishNumber.next(response.data.length);
+            this.whishItemNumber = response.data.length;
+          }
+        },
+      });
+    }
+
+    this._EcomdataService.whishNumber.subscribe({
+      next: (data) => {
+        this.whishItemNumber = data;
       },
     });
   }

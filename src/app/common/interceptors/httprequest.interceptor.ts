@@ -21,7 +21,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       request.url.includes('cart') ||
       request.url.includes('orders') ||
       request.url.includes('wishlist') ||
-      request.url.includes('addresses')
+      request.url.includes('addresses') ||
+      request.url.includes('changeMyPassword')
     ) {
       const token: any = localStorage.getItem('_token');
       try {

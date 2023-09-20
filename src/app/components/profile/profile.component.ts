@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EcomdataService } from 'src/app/common/services/ecomdata.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,14 +15,21 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   constructor(
     private _EcomdataService: EcomdataService,
+    private _AuthService: AuthService,
     private _fb: FormBuilder,
     private _ToastrService: ToastrService
   ) {}
+
+  userName: string = '';
 
   addressForm!: FormGroup;
   profileData: any[] = [];
 
   ngOnInit(): void {
+    this._AuthService.userData.subscribe((data) => {
+      this.userName = data.name;
+    });
+
     this.addressForm = this._fb.group({
       name: [''],
       details: [''],

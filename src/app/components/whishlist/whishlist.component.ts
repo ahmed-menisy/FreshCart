@@ -25,6 +25,7 @@ export class WhishlistComponent implements OnInit {
       next: (response) => {
         if (response.status === 'success') {
           this.whishList = response.data;
+          this._EcomdataService.whishNumber.next(response.data.length);
         }
       },
     });
@@ -46,7 +47,8 @@ export class WhishlistComponent implements OnInit {
             response.data.includes(item._id)
           );
 
-          console.log(this.whishList);
+          // console.log(this.whishList);
+          this._EcomdataService.whishNumber.next(this.whishList.length);
 
           // this.refresh();
         }

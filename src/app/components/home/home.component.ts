@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EcomdataService } from 'src/app/common/services/ecomdata.service';
-import { Product } from 'src/app/common/interfaces/product';
-import { CuttextPipe } from 'src/app/common/pipes/cuttext.pipe';
-import { RouterLink } from '@angular/router';
-import { OwlOptions, CarouselModule } from 'ngx-owl-carousel-o';
+import { Component, OnInit } from '@angular/core';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Category } from 'src/app/common/interfaces/category';
+import { Product } from 'src/app/common/interfaces/product';
+import { EcomdataService } from 'src/app/common/services/ecomdata.service';
 import { CardComponent } from '../card/card.component';
 
 @Component({
@@ -35,13 +33,10 @@ export class HomeComponent implements OnInit {
       },
     });
 
-    this._EcomdataService.getWishlist().subscribe({
-      next: (response) => {
-        if (response.status === 'success') {
-          this.whishList = response.data.map((item: any) => item._id);
-          console.log(this.whishList);
-        }
-      },
+    this._EcomdataService.whishList.subscribe((data) => {
+      if (data.length > 0) {
+        this.whishList = data;
+      }
     });
   }
 

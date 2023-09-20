@@ -55,8 +55,9 @@
 
       <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
         <li class="nav-item me-4 hstack">
-          <a routerLink="/whishlist" class="text-main cart-shop">
+          <a routerLink="/whishlist" class="text-main number-item">
             <i class="fas fa-heart fa-2x"></i>
+            <span *ngIf="whishItemNumber"> {{ whishItemNumber }} </span>
           </a>
         </li>
 
@@ -68,7 +69,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ userName }}
+              <i class="fas fa-user text-success"></i>
             </button>
             <ul class="dropdown-menu">
               <li>
@@ -83,8 +84,24 @@
                 <a
                   class="dropdown-item small"
                   routerLinkActive="active-link"
+                  routerLink="/updatepass"
+                  >Update password</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item small"
+                  routerLinkActive="active-link"
                   routerLink="/profile"
                   >Profile</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item small"
+                  routerLinkActive="active-link"
+                  routerLink="/allorders"
+                  >My Orders</a
                 >
               </li>
             </ul>
@@ -92,15 +109,24 @@
         </li>
 
         <li class="nav-item me-4 hstack">
-          <a routerLink="/cart" class="text-main cart-shop">
+          <a routerLink="/cart" class="text-main number-item">
             <i class="fas fa-cart-shopping fa-xl"></i>
             <span *ngIf="cartItemNumber"> {{ cartItemNumber }} </span>
           </a>
         </li>
         <li class="nav-item d-flex align-items-center gap-3 me-4">
-          <a href="#" class="text-reset"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="text-reset"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="text-reset"><i class="fab fa-linkedin"></i></a>
+          <a
+            href="https://www.facebook.com/ahmed.m.menisy/"
+            target="_blank"
+            class="text-reset"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            target="_blank"
+            href="https://api.whatsapp.com/send?phone=01015265077"
+            class="text-reset"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
         </li>
         <li class="nav-item">
           <span (click)="logOut()" class="nav-link" role="button">SignOut</span>

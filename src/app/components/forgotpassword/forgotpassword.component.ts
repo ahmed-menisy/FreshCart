@@ -150,6 +150,7 @@ export class ForgotpasswordComponent implements OnInit {
           if (response?.token) {
             this.errMsg = response.message;
             localStorage.setItem('_token', response?.token);
+            this._AuthService.saveUser();
             this.isLoading = false;
             this.resetPassword.disable();
             setTimeout(() => {

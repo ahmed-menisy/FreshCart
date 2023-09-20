@@ -101,18 +101,24 @@
       </ng-container>
     </div>
 
-    <button
-      *ngIf="!isLoading"
-      type="submit"
-      [disabled]="loginForm.invalid"
-      class="main-btn ms-auto"
-    >
-      <span>Login</span>
-    </button>
+    <div class="hstack justify-content-between">
+      <button
+        *ngIf="!isLoading"
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="main-btn"
+      >
+        <span>Login</span>
+      </button>
 
-    <button *ngIf="isLoading" type="button" disabled class="main-btn ms-auto">
-      <span> <i class="fas fa-spinner fa-spin"></i> </span>
-    </button>
+      <button *ngIf="isLoading" type="button" disabled class="main-btn ms-auto">
+        <span> <i class="fas fa-spinner fa-spin"></i> </span>
+      </button>
+
+      <a role="button" class="link-primary" routerLink="/forgotlogin"
+        >Forgot Password</a
+      >
+    </div>
 
     <p
       class="alert alert-danger text-center w-50 mx-auto mb-0 p-1 mt-3"

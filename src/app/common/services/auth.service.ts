@@ -19,8 +19,8 @@ export class AuthService {
     const encoded = localStorage.getItem('_token');
     if (encoded) {
       try {
-        const decoded = jwtDecode(encoded);
-        this.userData.next(decoded);
+        const decoded: any = jwtDecode(encoded);
+        decoded.name ? this.userData.next(decoded) : 'U';
       } catch (error: any) {
         if (error.message.includes('Invalid token')) {
           localStorage.removeItem('_token');
@@ -56,6 +56,13 @@ export class AuthService {
     return this._HttpClient.put(
       environment.baseUrlAuth + '/resetPassword',
       userData
+    );
+  }
+
+  setChangePassword(userPass: Object): Observable<any> {
+    return this._HttpClient.put(
+      environment.baseUrlUser + '/users/changeMyPassword',
+      userPass
     );
   }
 }
